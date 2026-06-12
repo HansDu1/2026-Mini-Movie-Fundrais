@@ -27,6 +27,17 @@ def num_check(question):
             print("Please enter an integer.")
 
 
+def calc_ticket_price(var_age):
+    if var_age<16:
+        price = 7.5
+    elif var_age<65:
+        price = 10.5
+    else:
+        price = 6.5
+    
+    return price
+
+
 
 Max_ticket=3
 ticket_sold=0
@@ -55,8 +66,13 @@ while ticket_sold<Max_ticket:
         print("Sorry, you are too young for this movie.")
         continue
     else:
-        print("That looks like a typo, please try again.")
+        print("?? That looks like a typo, please try again.")
         continue
+    
+    
+    ticket_cost = calc_ticket_price(age)
+    print("Age: {}, ticket price: ${:.2f}".format(age, ticket_cost))
+    
     ticket_sold+=1
     
 if ticket_sold==Max_ticket:
