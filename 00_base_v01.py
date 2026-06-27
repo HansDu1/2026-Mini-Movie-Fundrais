@@ -37,10 +37,26 @@ def calc_ticket_price(var_age):
     
     return price
 
+def string_checker(question, num_letters, valid_responses):
+    error="please choose{} or {}".format(valid_responses[0],valid_responses[1])
+    if num_letters == 1:
+        short_version=1
+    else:
+        short_version=2
+
+    while True:
+        response = input(question).lower()
+        for item in valid_responses:
+            if response == item[:short_version] or response == item:
+                return item
+        print(error)
 
 
 Max_ticket=3
 ticket_sold=0
+
+yes_no_list = ["yes","no"]
+payment_list = ["cash","credit"]
 
 want_instructions = yes_no("Do you want to read the instructions? ")
 
@@ -71,11 +87,13 @@ while ticket_sold<Max_ticket:
     
     
     ticket_cost = calc_ticket_price(age)
-    print("Age: {}, ticket price: ${:.2f}".format(age, ticket_cost))
+
+    payment_method = string_checker("Please choose a payment method (cash/credit): ",2,payment_list)
+    print("Age: {}, ticket price: ${:.2f}".format(age, ticket_cost))  
     
     ticket_sold+=1
     
 if ticket_sold==Max_ticket:
-    print("You have sold all the tickets!")
+    print("Congratulations! You have sold all the tickets!")
 else:
     print("You have sold {} tickets. There are {} tickets left.".format(ticket_sold, Max_ticket-ticket_sold))
