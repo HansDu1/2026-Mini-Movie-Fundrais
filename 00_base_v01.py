@@ -58,7 +58,7 @@ ticket_sold=0
 yes_no_list = ["yes","no"]
 payment_list = ["cash","credit"]
 
-want_instructions = yes_no("Do you want to read the instructions? ")
+want_instructions = string_checker("Do you want to read the instructions? (y/n)",1,yes_no_list)
 
 
 if want_instructions=="yes":
