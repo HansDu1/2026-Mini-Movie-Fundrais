@@ -1,4 +1,7 @@
 import pandas
+import random
+
+
 def yes_no(question):
     while True:
         response = input(question).lower()
@@ -117,7 +120,7 @@ while ticket_sold<Max_ticket:
 
 
 mini_movie_frame=pandas.DataFrame(mini_movie_fundrais_dict)
-mini_movie_frame=mini_movie_frame.set_index("Name")
+# mini_movie_frame=mini_movie_frame.set_index("Name")
 
 mini_movie_frame["Total"] = mini_movie_frame["Surcharge"] \
                             + mini_movie_frame["Ticket Price"]
@@ -131,12 +134,20 @@ add_dollars = ['Ticket Price','Surcharge','Total','Profit']
 for var_item in add_dollars:
     mini_movie_frame[var_item] = mini_movie_frame[var_item].apply(currency)
 
+
+winner_name=random.choice(all_names)
+win_index=all_names.index(winner_name)
+total_won=mini_movie_frame.loc[win_index,"Total"]
+
 print("---Ticket Data---")
 print()
 print(mini_movie_frame)
 print()
 print("Total Ticket Sales: ${:.2f}".format(total))
 print("Total Profit: ${:.2f}".format(profit))
+print ()
+print("---Raffle Winner---")
+print("Congratulations {}! You have won ${} ie: your ticket is free!".format(winner_name, total_won))
     
 if ticket_sold==Max_ticket:
     print("Congratulations! You have sold all the tickets!")
